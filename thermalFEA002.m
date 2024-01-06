@@ -100,7 +100,7 @@ g = geometryFromEdges(tmodel,g);
 figure;
 g = extrude(g,substrate_thickness); % estrudo substrato
 tmodel.Geometry = g;
-%pdegplot(tmodel,'CellLabels','on','EdgeLabel','on','FaceLabels','on');
+pdegplot(tmodel,'CellLabels','on','EdgeLabel','on','FaceLabels','on');
 
 
 g = extrude(g,[6,7,8],CAF_thickness); % estrudo elettrodi e CAF di CAF_thickness
