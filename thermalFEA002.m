@@ -1,19 +1,21 @@
 magnification = 1000;
-stretching = 1000;
+stretching = 2000;
 
 %use meters, then multiply for magnification and stretching
 
-substrate_length = 0.005*magnification; %0.005 [m]
-substrate_width = 0.004*magnification;
+substrate_length = 0.01*magnification; %0.005 [m]
+substrate_width = 0.01*magnification;
 substrate_thickness = 0.0007*magnification;
 
-CAF_length = 0.0005*magnification;
-CAF_width = 0.0005*magnification;
+CAF_length = 0.001*magnification;
+CAF_width = 0.002*magnification;
 CAF_thickness = 25e-9*magnification*stretching;
 
 electrode_thickness = 100e-9*magnification*stretching;
-electrode_length = 0.0015*magnification;
-electrode_width = 0.001*magnification;
+electrode_length = 0.003*magnification;
+electrode_width = 0.004*magnification;
+
+h = 0.2; %mesh parameter
 
 %NOTA IMPORTANTE!
 %quando magnifichi tutto il sistema (tutte e tre le direzioni), le tre componenti della conducibilità
@@ -29,7 +31,7 @@ kvetro = 1/magnification;
 kelectr = [300/stretching; 300/stretching; 300*stretching]/magnification;
 kcaf = [100/stretching; 100/stretching; 100*stretching]/magnification;
 
-q = 5; %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
+q = 5*1e+12/( magnification^3 * stretching ); %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 CAF_highedge = 0.5*(substrate_width+CAF_width);
@@ -88,6 +90,7 @@ sf = 'Sub+Elsx+Eldx+CAF';
 ns = char('Sub','Elsx','Eldx','CAF')'; %OCCHIO ALL'APICE
 g = decsg(gd,sf,ns);
 
+figure
 pdegplot(g,'FaceLabels','on');
 %[1,2],[-2,0.5])
 
@@ -113,7 +116,7 @@ figure
 pdegplot(tmodel,'CellLabels','on','EdgeLabel','off','FaceLabels','on');
 
 figure
-generateMesh(tmodel, 'Hmax',0.1);
+generateMesh(tmodel, 'Hmax',h);
 pdemesh(tmodel);
 
 %ATTENZIONE: FORSE MATLAB USA GLI inc INVECE CHE I metri. Convertire le
