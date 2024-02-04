@@ -1,21 +1,21 @@
 magnification = 1000;
-stretching = 2000;
+stretching = 5000;
 
 %use meters, then multiply for magnification and stretching
 
-substrate_length = 0.01*magnification; %0.005 [m]
-substrate_width = 0.01*magnification;
+substrate_length = 0.005*magnification; %0.005 [m]
+substrate_width = 0.005*magnification;
 substrate_thickness = 0.0007*magnification;
 
 CAF_length = 0.001*magnification;
-CAF_width = 0.002*magnification;
-CAF_thickness = 25e-9*magnification*stretching;
+CAF_width = 0.000250*magnification;
+CAF_thickness = 22e-9*magnification*stretching;
 
 electrode_thickness = 100e-9*magnification*stretching;
-electrode_length = 0.003*magnification;
-electrode_width = 0.004*magnification;
+electrode_length = 0.0007*magnification;
+electrode_width = 0.0005*magnification;
 
-h = 0.2; %mesh parameter
+h = 0.1; %mesh parameter
 
 %NOTA IMPORTANTE!
 %quando magnifichi tutto il sistema (tutte e tre le direzioni), le tre componenti della conducibilità
@@ -31,7 +31,7 @@ kvetro = 1/magnification;
 kelectr = [300/stretching; 300/stretching; 300*stretching]/magnification;
 kcaf = [100/stretching; 100/stretching; 100*stretching]/magnification;
 
-q = 5*1e+12/( magnification^3 * stretching ); %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
+q = 7.4e+12/( magnification^3 * stretching ); %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 CAF_highedge = 0.5*(substrate_width+CAF_width);
