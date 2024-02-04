@@ -1,7 +1,7 @@
 magnification = 1000;
 stretching = 5000;
 
-times = linspace(0.001,700.501,2);
+times = linspace(0.001,0.501,2);
 
 %use meters, then multiply for magnification and stretching
 
@@ -10,7 +10,7 @@ substrate_width = 0.002*magnification;
 substrate_thickness = 0.0007*magnification;
 
 CAF_radius = 0.000125*magnification;
-CAF_thickness = 22e-9*magnification*stretching;
+CAF_thickness = 20e-9*magnification*stretching;
 
 h = 0.15; %mesh parameter
 
@@ -33,7 +33,7 @@ rhoCAF = ((19.2E+3/magnification^3)/stretching)*0.7; %gold: 19.2 g/cm^3 = 0.0192
 cVetro = 840E+3; %J/(kg*K)
 rhoVetro = 2.5E+3/magnification^3; %(kg/m^3)/magnification^3
 
-q = 7.4e+12/( magnification^3 * stretching ); %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
+q = 4e+12/( magnification^3 * stretching ); %internal heat source = rho*j^2 = (1e-6 Ohm/m) * (1e+9 A/m^2)^2 / ( magnification^3 * stretching )
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 SublowerLeft  = [0 , 0];
@@ -126,7 +126,6 @@ T_3D = reshape(T_3D,size(X));
 figure
 slice(X,Y,Z,T_3D,[],substrate_width/2,[substrate_thickness*0.5, substrate_thickness*1],'nearest');
 colorbar;
-
 
 % figure
 % colormap jet
